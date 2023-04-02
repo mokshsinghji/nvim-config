@@ -1,0 +1,2 @@
+require("moksh")
+-- print("hello")
