@@ -50,49 +50,69 @@ return require("packer").startup(function(use)
     {'rafamadriz/friendly-snippets'} -- Optional
   }
   -- use {
-  --   'nvim-tree/nvim-tree.lua',
-  --   requires = {
-  --     'nvim-tree/nvim-web-devicons', -- optional
-  --   }
-  -- }
-  use {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
-  }
-  use {
-    "zbirenbaum/copilot.lua",
-    config = function ()
-      require("copilot").setup({
-        suggestion = {
-          auto_trigger = true,
-          keymap = {
-            accept = "<C-a>",
-          },
+    --   'nvim-tree/nvim-tree.lua',
+    --   requires = {
+      --     'nvim-tree/nvim-web-devicons', -- optional
+      --   }
+      -- }
+      use {
+        'numToStr/Comment.nvim',
+        config = function()
+          require('Comment').setup()
+        end
+      }
+      use {
+        "zbirenbaum/copilot.lua",
+        config = function ()
+          require("copilot").setup({
+            suggestion = {
+              auto_trigger = true,
+              keymap = {
+                accept = "<C-a>",
+              },
+            },
+          })
+        end
+      }
+      use({
+        "Pocco81/auto-save.nvim",
+        config = function()
+          require("auto-save").setup {
+            -- your config goes here
+            -- or just leave it empty :)
+          }
+        end,
+      })
+      use { 'mhartington/formatter.nvim' }
+      use { 'williamboman/mason.nvim' }
+      use	{'neovim/nvim-lspconfig'}             -- Required
+      use {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        requires = {
+          "nvim-lua/plenary.nvim",
+          "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+          "MunifTanjim/nui.nvim",
+        }
+      }
+      use 'mfussenegger/nvim-dap-python'
+      use 'mfussenegger/nvim-dap'
+      -- use { 'sakhnik/nvim-gdb', run = '!./install.sh' 
+      -- }
+      use 'ThePrimeagen/harpoon'
+      use 'ThePrimeagen/vim-be-good'
+      -- use 'SirVer/ultisnips'
+      -- use 'mlaursen/vim-react-snippets'
+      use({
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        tag = "v<CurrentMajor>.*",
+        -- install jsregexp (optional!:).
+        run = "make install_jsregexp",
+        requires = {
+          "rafamadriz/friendly-snippets",
+          "luasnip_snippets.nvim",
         },
       })
-    end
-  }
-  use({
-    "Pocco81/auto-save.nvim",
-    config = function()
-      require("auto-save").setup {
-        -- your config goes here
-        -- or just leave it empty :)
-      }
-    end,
-  })
-  use { 'mhartington/formatter.nvim' }
-  use { 'williamboman/mason.nvim' }
-  use	{'neovim/nvim-lspconfig'}             -- Required
-  use {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    }
-  }
-end)
+      use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'} 
+    end)
